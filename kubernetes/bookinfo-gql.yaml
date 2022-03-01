@@ -71,8 +71,8 @@ spec:
               response:
                 resultRoot: "ratings[*]"
                 setters:
-                  reviewer: "[*][0]"
-                  numStars: "[*][1]"
+                  reviewer: "{$body[*][0]}"
+                  numStars: "{$body[*][1]}"
               upstreamRef:
                 name: default-ratings-9080
                 namespace: gloo-system
