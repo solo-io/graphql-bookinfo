@@ -58,7 +58,7 @@ spec:
                   :method: GET
                   :path: /reviews/{$parent.id}
               response:
-                resultRoot: "reviews"
+                resultRoot: "review"
               upstreamRef:
                 name: default-reviews-9080
                 namespace: gloo-system
@@ -78,26 +78,42 @@ spec:
                 namespace: gloo-system
     schemaDefinition: |
       type Query {
+        """Description of a book in HTML"""
         productsForHome: [Product] @resolve(name: "Query|productsForHome")
       }
-
+      
+      """Each book has a product entry"""
       type Product {
-        id: String
-        title: String
-        descriptionHtml: String
-        author: String @resolve(name: "author")
-        pages: Int @resolve(name: "pages")
-        year: Int @resolve(name: "year")
-        reviews : [Review] @resolve(name: "reviews")
-        ratings : [Rating] @resolve(name: "ratings")
+        """Unique identifier for books"""
+      id: String
+      """The book title"""
+      title: String
+      """Description of a book in HTML"""
+      descriptionHtml: String
+      """Author of the book"""
+      author: String @resolve(name: "author")
+      """Total number of pages in the book"""
+      pages: Int @resolve(name: "pages")
+      """Year of original publication"""
+      year: Int @resolve(name: "year")
+      """List of reader reviews for this book"""
+      review: [Review] @resolve(name: "review")
+      """List of reader ratings for this book"""
+      ratings: [Rating]
       }
 
+      """A book review"""
       type Review {
-        reviewer: String
-        text: String
+          """Name of the reviewer"""
+          reviewer: String
+          """Review details"""
+          text: String
       }
 
+      """A book rating"""
       type Rating {
-        reviewer : String
-        numStars : Int
+          """Name of the user peforming the rating"""
+          reviewer: String
+          """Number of stars for this rating"""
+          numStars: Int
       }

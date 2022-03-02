@@ -1,25 +1,41 @@
 
 type Query {
-    productsForHome: [Product]
+    """Description of a book in HTML"""
+    productsForHome: [Product] @resolve(name: "productsForHome")
 }
 
+"""Each book has a product entry"""
 type Product {
+    """Unique identifier for books"""
     id: String
+    """The book title"""
     title: String
+    """Description of a book in HTML"""
     descriptionHtml: String
-    author: String
-    pages: Int
-    year: Int
-    review: [Review]
+    """Author of the book"""
+    author: String @resolve(name: "author")
+    """Total number of pages in the book"""
+    pages: Int @resolve(name: "pages")
+    """Year of original publication"""
+    year: Int @resolve(name: "year")
+    """List of reader reviews for this book"""
+    review: [Review] @resolve(name: "review")
+    """List of reader ratings for this book"""
     ratings: [Rating]
 }
 
+"""A book review"""
 type Review {
+    """Name of the reviewer"""
     reviewer: String
+    """Review details"""
     text: String
 }
 
+"""A book rating"""
 type Rating {
+    """Name of the user peforming the rating"""
     reviewer: String
+    """Number of stars for this rating"""
     numStars: Int
 }
