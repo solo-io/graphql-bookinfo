@@ -51,14 +51,14 @@ spec:
               upstreamRef:
                 name: default-details-9080
                 namespace: gloo-system
-          reviews:
+          review:
             restResolver:
               request:
                 headers:
                   :method: GET
                   :path: /reviews/{$parent.id}
               response:
-                resultRoot: "review"
+                resultRoot: "reviews"
               upstreamRef:
                 name: default-reviews-9080
                 namespace: gloo-system
