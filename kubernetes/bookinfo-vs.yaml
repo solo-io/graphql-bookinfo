@@ -19,7 +19,7 @@ spec:
         allowOriginRegex:
         - \*
     routes:
-    - graphqlSchemaRef:
+    - graphqlApiRef:
         name: bookinfo-graphql
         namespace: gloo-system
       matchers:

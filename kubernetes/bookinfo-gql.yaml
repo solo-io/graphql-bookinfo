@@ -1,5 +1,5 @@
 apiVersion: graphql.gloo.solo.io/v1alpha1
-kind: GraphQLSchema
+kind: GraphQLApi
 metadata:
   name: bookinfo-graphql
   namespace: gloo-system
@@ -81,7 +81,7 @@ spec:
         """Description of a book in HTML"""
         productsForHome: [Product] @resolve(name: "Query|productsForHome")
       }
-      
+
       """Each book has a product entry"""
       type Product {
         """Unique identifier for books"""
