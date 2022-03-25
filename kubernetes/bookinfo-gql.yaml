@@ -97,7 +97,7 @@ spec:
       """Year of original publication"""
       year: Int @resolve(name: "year")
       """List of reader reviews for this book"""
-      review: [Review] @resolve(name: "review")
+      reviews: [Review] @resolve(name: "review")
       """List of reader ratings for this book"""
       ratings: [Rating]
       }
