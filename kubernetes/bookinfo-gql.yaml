@@ -99,7 +99,7 @@ spec:
       """List of reader reviews for this book"""
       reviews: [Review] @resolve(name: "review")
       """List of reader ratings for this book"""
-      ratings: [Rating]
+      ratings: [Rating] @resolve(name: "ratings")
       }
 
       """A book review"""
