@@ -18,49 +18,14 @@ spec:
               upstreamRef:
                 name: default-productpage-9080
                 namespace: gloo-system
-          author:
+          product_details:
             restResolver:
               request:
                 headers:
                   :method: GET
                   :path: /details/{$parent.id}
-              response:
-                resultRoot: "author"
               upstreamRef:
                 name: default-details-9080
-                namespace: gloo-system
-          pages:
-            restResolver:
-              request:
-                headers:
-                  :method: GET
-                  :path: /details/{$parent.id}
-              response:
-                resultRoot: "pages"
-              upstreamRef:
-                name: default-details-9080
-                namespace: gloo-system
-          year:
-            restResolver:
-              request:
-                headers:
-                  :method: GET
-                  :path: /details/{$parent.id}
-              response:
-                resultRoot: "year"
-              upstreamRef:
-                name: default-details-9080
-                namespace: gloo-system
-          review:
-            restResolver:
-              request:
-                headers:
-                  :method: GET
-                  :path: /reviews/{$parent.id}
-              response:
-                resultRoot: "reviews"
-              upstreamRef:
-                name: default-reviews-9080
                 namespace: gloo-system
           ratings:
             restResolver:
@@ -90,16 +55,21 @@ spec:
       title: String
       """Description of a book in HTML"""
       descriptionHtml: String
-      """Author of the book"""
-      author: String @resolve(name: "author")
-      """Total number of pages in the book"""
-      pages: Int @resolve(name: "pages")
-      """Year of original publication"""
-      year: Int @resolve(name: "year")
+      """Product details"""
+      details: ProductDetails @resolve(name: "product_details")
       """List of reader reviews for this book"""
       reviews: [Review] @resolve(name: "review")
       """List of reader ratings for this book"""
       ratings: [Rating] @resolve(name: "ratings")
+      }
+
+      type ProductDetails {
+        """Author of the book"""
+        author: String
+        """Total number of pages in the book"""
+        pages: Int
+        """Year of original publication"""
+        year: Int
       }
 
       """A book review"""
